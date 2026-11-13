@@ -1,0 +1,93 @@
+@startsalt
+{+
+  {* <b>[TL] TRIBELINK - ScrumGPT</b> | Pixel-Lobby (Hotel) | Ontmoeten & QR-Poster | Matcher & Uitjes | Proces | [Donkere modus] }
+  ==
+  {
+    {
+      <b>Van losse projectgroepjes naar een verbonden tribe</b>
+      Alleen toegankelijk voor @student.hu.nl en coaches.
+      [Stap direct de Pixel-Lobby binnen]  [Bekijk Design- & Scrum-proces]
+    } | {
+      {+
+        <b>Jouw veilige HU-profiel (Safe Space)</b>
+        HU-mail:    "harsha.kanaparthi@student.hu.nl   "
+        Schuilnaam: "Harsha                            "
+        Privacy:    ^2. Deels zichtbaar (Mutual Consent)^
+        Tags (>=3): [X] Python [X] React [X] Gaming [ ] Bowlen
+        [Profiel & HU-verificatie opslaan]
+      }
+    }
+  }
+  ==
+  <b>KERNFUNCTIE: HET HOTEL (PIXEL-LOBBY KANTINE) & MINIGAME</b>
+  {
+    {+
+      <b>Kamer: HU Kantine (5 online)</b>
+      {T
+        + [Plant]  | [ . ]     | [@nick_vb] | [ . ]     | [ . ]    | [Plant]
+        + [ . ]    | [Tafel 1] | [Tafel 1]  | [ . ]     | [@bart2] | [ . ]
+        + [ . ]    | [Harsha]  | [Kleed]    | [Kleed]   | [ . ]    | [ . ]
+        + [ . ]    | [@marvin] | [ . ]      | [Speltafel]| [ . ]   | [LobbyBot]
+      }
+      [Zwaai] [Pixel-dans] Spel: ^Boter-Kaas-en-Eieren^ [Nodig kamer uit]
+      Chat: "Hoi allemaal, wie doet er mee?       " [Stuur]
+    } | {
+      {+
+        <b>Lobby-Minigame vs LobbyBot</b>
+        {
+          [ X ] | [   ] | [   ]
+          [   ] | [ O ] | [   ]
+          [   ] | [   ] | [   ]
+        }
+        [Nieuw potje starten]
+      }
+    }
+  }
+  ==
+  <b>ONTMOETEN HUB (LAAGDREMPELIG CONTACT)</b>
+  {
+    {+
+      <b>1. IJsbreker (Gespreks-Ui)</b>
+      Laag: ^Laag 2: Hobby's & games^
+      "Welke game of hobby doe jij graag?"
+      [Trek nieuwe vraag] [Kopieer]
+    } | {
+      {+
+        <b>2. Open Brief aan Tribe</b>
+        "Wie speelt donderdag Codenames?"
+        [Brief plaatsen]
+        @kagan_s1 -> [Beantwoord (2)]
+      }
+    } | {
+      {+
+        <b>3. Fysieke QR-Poster</b>
+        <b>Hi, I'm Harsha (@harsha20062)</b>
+        "Let's connect and talk!"
+        [QR-CODE SVG] [Print Poster]
+      }
+    }
+  }
+  ==
+  <b>TRIBE MATCHER & OFFLINE HANGOUT DATUMPRIKKER</b>
+  {
+    {+
+      <b>Zoek op hobby/rol</b>
+      Zoek: "Python / Bowlen   " ^Alle tags^
+      * Nick (Gaming, React)
+      * Bart (Security, Python)
+      * Marvin (React, Bowlen)
+      * Harsha (Python, AI, Web)
+    } | {
+      {+
+        <b>Offline Hangouts & Datumprikker</b>
+        <b>Tribe Bowlingavond Utrecht (Max 16)</b>
+        Do 12 nov 18:30 - 7 stemmen [BEST PASSEND] [Stem Ja]
+        Vr 13 nov 19:00 - 5 stemmen                [Stem Ja]
+        [+ Nieuwe Hangout toevoegen]
+      }
+    }
+  }
+  ==
+  {* Mobiele Onderbalk (<768px, uit interview Thian): [Profiel] | [Hotel] | [Ontmoet] | [Uitjes] }
+}
+@endsalt

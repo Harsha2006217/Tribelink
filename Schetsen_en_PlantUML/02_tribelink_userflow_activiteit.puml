@@ -1,0 +1,49 @@
+@startuml
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName SansSerif
+skinparam ActivityBackgroundColor #F0F9FF
+skinparam ActivityBorderColor #0369A1
+skinparam ActivityDiamondBackgroundColor #FEF3C7
+skinparam ActivityDiamondBorderColor #B45309
+skinparam ArrowColor #0F172A
+
+title User Flow TribeLink - Van Veilige HU-Login naar Online & Offline Verbinding (ScrumGPT)
+
+start
+:Bezoeker opent **TribeLink** (Desktop of Mobiel);
+:Voert e-mailadres, roepnaam/schuilnaam en >= 3 interesse-tags in;
+
+if (Eindigt e-mail op @student.hu.nl of @hu.nl?) then (Nee)
+  :Toon duidelijke NL foutmelding:\n"Alleen toegankelijk met geldig HU-adres";
+  stop
+else (Ja - Geverifieerd!)
+  :Stel **Privacy by Default** in\n(Laag 1: alleen schuilnaam & avatar zichtbaar);
+endif
+
+partition "Centrale Keuze in TribeLink (Max. 1 tot 2 klikken)" {
+  split
+    :**Pixel-Lobby (Het Hotel - Kantine)**;
+    :Loop over tegels, ga naast medestudent zitten\nof speel minigame (bijv. tegen LobbyBot / student);
+  split again
+    :**Ontmoeten Hub (Digitaal)**;
+    :Trek **Gespreks-Ui IJsbreker** (Laag 1/2/3),\nstart **Random Chat** of plaats **Open Brief**;
+  split again
+    :**Fysiek Cross-Tribe Contact**;
+    :Genereer persoonlijke **QR-Poster**\n("Hi, I'm Harsha") en laat scannen op de gang;
+  split again
+    :**Tribe-Matcher & Hangouts**;
+    :Filter leden op gedeelde interesses\n(bijv. Bowlen, Python, Gaming);
+  end split
+}
+
+if (Klikt het en willen beide studenten contact houden?) then (Ja - Mutual Consent)
+  :Beide gebruikers accepteren vriendschapsverzoek;
+  :Extra profielvelden (volledige bio & socials) worden zichtbaar;
+  :Plan of stem op een **Offline Hangout** via de **Datumprikker**\n(hoogste score krijgt automatisch badge **Best Passend**);
+  :Echte ontmoeting op HU Padualaan of tijdens groepsuitje!;
+else (Nog even rondkijken)
+  :Blijf veilig en vrijblijvend rondlopen in de Pixel-Lobby;
+endif
+
+stop
+@enduml

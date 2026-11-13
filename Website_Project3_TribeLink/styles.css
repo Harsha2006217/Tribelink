@@ -1,0 +1,847 @@
+/* ==========================================================================
+   Bestand: styles.css
+   Project: HU Open-ICT Semester 1 - Project 3: In verbinding met onze tribes
+   Product: TribeLink (Squad: ScrumGPT - Nick, Bart, Marvin, Harsha & start met Ekrem)
+   Auteur van deze standalone showcase & frontend-uitwerking: Harsha Kanaparthi
+   Periode: Oktober - 5 november 2026 (1 week Design Sprint + 2 Bouwsprints)
+
+   Toelichting op mijn CSS-keuzes (gekoppeld aan ons doelgroeponderzoek):
+   1. Huisstijl van TribeLink: Gebaseerd op onze gezamenlijke kleuren uit de
+      Sprint Review (15-10) en Expo (05-11): helder TribeLink-blauw, donkerblauw
+      voor onze isometrische Pixel-Lobby ("Het Hotel - Kantine") en een paars-
+      blauw verloop voor de persoonlijke QR-poster.
+   2. Mobiele navigatie onderaan het scherm: Uit ons interview met Thian kwam naar
+      voren dat studenten belangrijke knoppen op mobiel onderaan binnen duimbereik
+      willen hebben. Daarom verschijnt op smalle schermen een vaste onderbalk.
+   3. 100% Responsive & 200% Browser-Zoom: Alle lay-outs gebruiken rem-maten,
+      minmax(min(100%, ...), 1fr), min-width: 0 en overflow-wrap: break-word.
+      Zo ontstaat er nooit een horizontale schuifbalk op 320px of bij 200% zoom.
+   ========================================================================== */
+
+:root {
+  --bg-page: #f3f7fc;
+  --bg-surface: #ffffff;
+  --bg-subtle: #e8f0fa;
+  --bg-hotel: #0d1b33;
+  --bg-accent-soft: #e0f2fe;
+  --bg-success-soft: #dcfce7;
+  --bg-warn-soft: #fef3c7;
+
+  --text-main: #0f172a;
+  --text-muted: #475569;
+
+  /* Kleuren gecontroleerd op minimaal 4.5:1 contrast op wit (WCAG 2.1 AA) */
+  --brand: #0369a1;
+  --brand-dark: #075985;
+  --teal: #0f766e;
+  --purple: #6d28d9;
+  --danger: #b91c1c;
+  --success: #15803d;
+
+  --border: #cbd5e1;
+  --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 10px 24px rgba(15, 23, 42, 0.09);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.85rem;
+  --radius-lg: 1.15rem;
+
+  --max-w: 78rem;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+html[data-theme="dark"] {
+  --bg-page: #09111f;
+  --bg-surface: #111c30;
+  --bg-subtle: #1a2942;
+  --bg-hotel: #070e1c;
+  --bg-accent-soft: #13314c;
+  --bg-success-soft: #123626;
+  --bg-warn-soft: #3a2b10;
+
+  --text-main: #f1f5f9;
+  --text-muted: #cbd5e1;
+
+  --brand: #38bdf8;
+  --brand-dark: #7dd3fc;
+  --teal: #2dd4bf;
+  --purple: #c4b5fd;
+  --danger: #fca5a5;
+  --success: #4ade80;
+
+  --border: #334155;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 100%;
+  scroll-padding-top: 6.5rem;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  line-height: 1.58;
+  overflow-x: hidden;
+  padding-bottom: 4.2rem; /* Ruimte voor de mobiele duim-navigatiebalk */
+}
+
+@media (min-width: 901px) {
+  body {
+    padding-bottom: 0;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-sm);
+}
+
+:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 3px;
+  border-radius: 0.25rem;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background: var(--brand);
+  color: #ffffff;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  z-index: 999;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 3vw, 2rem);
+}
+
+.section {
+  padding-block: clamp(2.2rem, 4.5vw, 3.6rem);
+  border-bottom: 1px solid var(--border);
+}
+
+.section-alt {
+  background-color: var(--bg-subtle);
+}
+
+h1, h2, h3, h4 {
+  margin-top: 0;
+  line-height: 1.24;
+  overflow-wrap: break-word;
+}
+
+h1 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); margin-bottom: 0.75rem; }
+h2 { font-size: clamp(1.35rem, 2.5vw, 1.95rem); margin-bottom: 0.6rem; }
+h3 { font-size: clamp(1.06rem, 1.7vw, 1.25rem); margin-bottom: 0.45rem; }
+p { margin-top: 0; margin-bottom: 0.9rem; overflow-wrap: break-word; }
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--bg-accent-soft);
+  color: var(--brand);
+  padding: 0.25rem 0.68rem;
+  border-radius: 999px;
+  margin-bottom: 0.55rem;
+}
+
+/* --- 1. Bovenbalk (TribeLink Header) --- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 300;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 0.9rem;
+  padding-block: 0.65rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--text-main);
+  font-weight: 800;
+  font-size: 1.02rem;
+}
+
+.tl-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.28rem 0.55rem;
+  border-radius: 0.45rem;
+  background: linear-gradient(135deg, #0284c7, #0d9488);
+  color: #ffffff;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  font-size: 0.86rem;
+}
+
+.main-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.2rem 0.35rem;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: var(--text-main);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.32rem 0.5rem;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+.main-nav a:hover {
+  background-color: var(--bg-subtle);
+  color: var(--brand);
+}
+
+.header-right {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.user-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border);
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+}
+
+.btn-util, .nav-toggle {
+  background-color: var(--bg-subtle);
+  color: var(--text-main);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.38rem 0.68rem;
+  font-size: 0.83rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .nav-toggle {
+    display: inline-flex;
+  }
+  .main-nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .main-nav.is-open {
+    display: flex;
+  }
+  .main-nav a {
+    width: 100%;
+    padding: 0.45rem 0.6rem;
+  }
+}
+
+/* Mobiele onderste navigatiebalk (uit interview met Thian!) */
+.mobile-bottom-nav {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .mobile-bottom-nav {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 310;
+    background-color: var(--bg-surface);
+    border-top: 2px solid var(--border);
+    box-shadow: 0 -4px 12px rgba(15, 23, 42, 0.08);
+  }
+  .mobile-bottom-nav a {
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 0.74rem;
+    font-weight: 700;
+    padding: 0.55rem 0.2rem;
+    overflow-wrap: anywhere;
+  }
+}
+
+/* --- 2. Hero + HU-Schoolmail Safe-Space Profielkaart --- */
+.hero-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 21rem), 1fr));
+  gap: 1.6rem;
+  align-items: start;
+}
+
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.85rem;
+}
+
+.pill {
+  font-size: 0.8rem;
+  font-weight: 600;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.05rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.btn-primary {
+  background-color: var(--brand);
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .btn-primary {
+  color: #09111f;
+}
+
+.btn-secondary {
+  background-color: var(--bg-surface);
+  color: var(--text-main);
+  border-color: var(--border);
+}
+
+.card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.15rem;
+  box-shadow: var(--shadow-sm);
+  min-width: 0;
+}
+
+.form-group {
+  margin-bottom: 0.8rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.86rem;
+  font-weight: 700;
+  margin-bottom: 0.28rem;
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 0.52rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  font: inherit;
+  font-size: 0.9rem;
+}
+
+.form-input.is-invalid {
+  border-color: var(--danger);
+  outline: 2px solid var(--danger);
+}
+
+.status-msg {
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.5rem 0.7rem;
+  border-radius: var(--radius-sm);
+  margin-top: 0.55rem;
+}
+
+.status-msg.ok {
+  background-color: var(--bg-success-soft);
+  color: var(--success);
+}
+
+.status-msg.err {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-block: 0.45rem;
+}
+
+.interest-tag {
+  background-color: var(--bg-subtle);
+  color: var(--text-main);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.28rem 0.68rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.08s ease, background-color 0.08s ease;
+}
+
+.interest-tag.is-selected {
+  background-color: var(--brand);
+  color: #ffffff;
+  border-color: var(--brand);
+}
+
+html[data-theme="dark"] .interest-tag.is-selected {
+  color: #09111f;
+}
+
+/* --- 3. HET HOTEL (Isometrische Pixel-Lobby Kantine) + Minigame --- */
+.hotel-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.hotel-stage {
+  background-color: var(--bg-hotel);
+  color: #f8fafc;
+  border-radius: var(--radius-lg);
+  padding: 1.1rem;
+  box-shadow: var(--shadow-md);
+  border: 2px solid #1e3a5f;
+}
+
+.hotel-topbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+  font-size: 0.84rem;
+}
+
+.online-badge {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #6ee7b7;
+  border: 1px solid #10b981;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+/* 6x5 Kantine Tegelvloer: schaalt op elk scherm mee zonder overflow! */
+.room-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.35rem;
+  background: linear-gradient(145deg, #172b4d, #1e3a6d);
+  padding: 0.75rem;
+  border-radius: var(--radius-md);
+  border: 2px solid #38bdf8;
+}
+
+.room-tile {
+  aspect-ratio: 1 / 1;
+  min-height: 2.9rem;
+  background-color: rgba(241, 245, 249, 0.92);
+  color: #0f172a;
+  border: 1px solid #94a3b8;
+  border-radius: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.15rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.room-tile.rug {
+  background-color: #bae6fd;
+  border-color: #0284c7;
+}
+
+.room-tile.chair {
+  background-color: #fef08a;
+  border-color: #ca8a04;
+}
+
+.room-tile.has-me {
+  background-color: #34d399;
+  border: 2px solid #065f46;
+  color: #064e3b;
+}
+
+.avatar-sprite {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.hotel-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.85rem;
+}
+
+.btn-hotel {
+  background-color: #1e293b;
+  color: #f8fafc;
+  border: 1px solid #475569;
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.68rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-hotel:hover {
+  border-color: #38bdf8;
+}
+
+.hotel-chat-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+}
+
+.hotel-chat-bar input {
+  flex: 1 1 11rem;
+  min-width: 0;
+  padding: 0.48rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid #475569;
+  background-color: #0f172a;
+  color: #ffffff;
+  font-size: 0.86rem;
+}
+
+.chat-feed {
+  margin-top: 0.75rem;
+  background-color: rgba(15, 23, 42, 0.7);
+  border: 1px solid #334155;
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.75rem;
+  max-height: 8.5rem;
+  overflow-y: auto;
+  font-size: 0.82rem;
+}
+
+.chat-feed p {
+  margin-bottom: 0.3rem;
+}
+
+/* Minigame Boter-Kaas-en-Eieren in de Lobby */
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45rem;
+  max-width: 14rem;
+  margin-block: 0.75rem;
+}
+
+.ttt-cell {
+  aspect-ratio: 1 / 1;
+  min-height: 3.1rem;
+  font-size: 1.35rem;
+  font-weight: 900;
+  background-color: var(--bg-subtle);
+  color: var(--text-main);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+/* --- 4. Ontmoeten Hub: IJsbreker ("Gespreks-Ui"), Open Brief & QR-Poster --- */
+.three-col-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18.5rem), 1fr));
+  gap: 1.15rem;
+  align-items: start;
+}
+
+.icebreaker-card {
+  background: linear-gradient(135deg, var(--bg-accent-soft), var(--bg-surface));
+  border: 2px solid var(--brand);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-block: 0.75rem;
+  min-height: 6.5rem;
+  transition: transform 0.2s ease;
+}
+
+.icebreaker-card.is-flipped {
+  transform: scale(0.98);
+}
+
+/* Persoonlijke QR-Poster exact in onze TribeLink stijl ("Hi, I'm Harsha") */
+.poster-preview {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+.poster-banner {
+  background: linear-gradient(135deg, #4f46e5, #a855f7);
+  color: #ffffff;
+  padding: 1rem;
+}
+
+.poster-body {
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+}
+
+.qr-box {
+  width: 6.5rem;
+  height: 6.5rem;
+  background: #0f172a;
+  padding: 0.45rem;
+  border-radius: 0.6rem;
+  flex-shrink: 0;
+}
+
+/* --- 5. Matcher Grid & Hangout Datumprikker --- */
+.two-col-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+.member-card {
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem;
+  min-width: 0;
+}
+
+.hangout-card {
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--teal);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.date-vote-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.45rem;
+  padding: 0.4rem 0.55rem;
+  margin-top: 0.4rem;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 0.35rem;
+  font-size: 0.83rem;
+}
+
+.best-badge {
+  background-color: var(--bg-success-soft);
+  color: var(--success);
+  font-size: 0.74rem;
+  font-weight: 800;
+  padding: 0.12rem 0.48rem;
+  border-radius: 999px;
+}
+
+/* --- 6. Proces-Tabbladen, Tabellen & Bewijzen --- */
+.tablist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+}
+
+.tab-btn {
+  background-color: var(--bg-surface);
+  color: var(--text-main);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.85rem;
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tab-btn[aria-selected="true"] {
+  background-color: var(--brand);
+  color: #ffffff;
+  border-color: var(--brand);
+}
+
+html[data-theme="dark"] .tab-btn[aria-selected="true"] {
+  color: #09111f;
+}
+
+.tab-panel {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.tab-panel[hidden] {
+  display: none;
+}
+
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-block: 0.8rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+  min-width: 34rem;
+}
+
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.6rem 0.7rem;
+  border-bottom: 1px solid var(--border);
+  overflow-wrap: break-word;
+}
+
+th {
+  background-color: var(--bg-subtle);
+  font-weight: 700;
+}
+
+.evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 1rem;
+  margin-block: 1rem;
+}
+
+.evidence-fig {
+  margin: 0;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.8rem;
+}
+
+.evidence-fig figcaption {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+.site-footer {
+  background-color: var(--bg-surface);
+  border-top: 2px solid var(--border);
+  padding-block: 2rem;
+  font-size: 0.88rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: 1.4rem;
+}
+
+.footer-col {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+@media print {
+  .site-header, .mobile-bottom-nav, .tablist, .skip-link {
+    display: none !important;
+  }
+  .tab-panel[hidden] {
+    display: block !important;
+    margin-bottom: 1rem;
+  }
+}

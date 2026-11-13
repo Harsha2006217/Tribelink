@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <!--
+    Bestand: index.html
+    Project: HU Open-ICT Semester 1 - Project 3: In verbinding met onze tribes
+    Productnaam: TribeLink (door Squad ScrumGPT: Nick, Bart, Marvin, Harsha & start met Ekrem)
+    Auteur van deze interactieve showcase & frontend-verantwoording: Harsha Vardhan Kanaparthi
+    Tijdlijn: Design Sprint (Week 0) + Bouwsprint 1 (Review 15-10-2026) + Bouwsprint 2 (Expo 05-11-2026)
+
+    Waarom ik deze standalone HTML5/CSS3/JS versie naast onze React/Laravel serveromgeving oplever:
+    Ons groepsproduct TribeLink draaide tijdens de sprint op onze Ubuntu Server (hu-s1p3-tribelink,
+    45.132.41.76) met een React/Tailwind frontend en Laravel backend. Zodat elke coach, medestudent
+    of beoordelaar in Portflow óók zonder draaiende PHP-database direct alle kernfuncties van
+    TribeLink én mijn eigen aandeel (HU-mail registratie, Pixel-Lobby Hotel, IJsbrekers, Open Brief,
+    QR-poster, Matcher, Datumprikker en ons hele Scrum/Design-proces) op elk scherm en bij 200% zoom
+    kan uitproberen, heb ik deze volledige, foutloze webversie gebouwd en uitgebreid gedocumenteerd.
+  -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="TribeLink door Squad ScrumGPT (Harsha Kanaparthi, Nick, Bart, Marvin) - Interactieve ontmoetingsplek met Pixel-Lobby Hotel, minigames, QR-poster en volledig Design Sprint & Scrum dossier voor HU Open-ICT Project 3."
+  />
+  <title>TribeLink &middot; Project 3: In verbinding met onze tribes | Harsha Kanaparthi</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#hoofdinhoud">Direct naar hoofdinhoud</a>
+
+  <!-- =====================================================================
+       BOVENBALK VAN TRIBELINK
+       ===================================================================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top">
+        <span class="tl-logo" aria-hidden="true">TL</span>
+        <span>TRIBELINK &middot; ScrumGPT</span>
+      </a>
+
+      <button id="navToggle" class="nav-toggle" type="button" aria-expanded="false" aria-controls="mainNav">
+        Menu &#9776;
+      </button>
+
+      <nav id="mainNav" class="main-nav" aria-label="Hoofdnavigatie">
+        <a href="#hotel">Pixel-Lobby (Hotel)</a>
+        <a href="#ontmoeten">Ontmoeten &amp; QR-Poster</a>
+        <a href="#matcher-hangouts">Matcher &amp; Datumprikker</a>
+        <a href="#scrum-proces">Design Sprint &amp; Scrum</a>
+        <a href="#wildcard">Wildcard Story</a>
+        <a href="#ict-waarden">5 ICT-waarden</a>
+      </nav>
+
+      <div class="header-right">
+        <span id="headerUserBadge" class="user-pill">Harsha (@harsha20062)</span>
+        <button id="themeBtn" class="btn-util" type="button">Donkere modus</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="hoofdinhoud">
+    <!-- ===================================================================
+         HERO + VEILIGE HU-SCHOOLMAIL REGISTRATIE & STAP-VOOR-STAP PROFIEL
+         =================================================================== -->
+    <section id="top" class="section">
+      <div class="container hero-grid">
+        <div>
+          <div class="pill-row">
+            <span class="pill">HU Open-ICT &middot; Project 3</span>
+            <span class="pill">Squad: ScrumGPT</span>
+            <span class="pill">Design Sprint + 2 Bouwsprints</span>
+          </div>
+          <h1>TribeLink: Van losse projectgroepjes naar één verbonden tribe</h1>
+          <p>
+            Uit onze zes doelgroep-interviews (met o.a. Isabel, Anne-Wil, Reyna, Thian, Abdallah, Kagan en Joshua)
+            bleek één duidelijk probleem: contact binnen Open-ICT stopt vaak bij je eigen squad, en formele kanalen
+            zoals MS Teams of Outlook voelen te zakelijk om zomaar een praatje te starten.
+          </p>
+          <p>
+            Daarom bouwden wij (<strong>Nick, Bart, Marvin en ik &mdash; Harsha</strong>, met <strong>Ekrem</strong> in de
+            beginfase) <strong>TribeLink</strong>: een veilige digitale én fysieke ontmoetingsplek exclusief voor
+            <code>@student.hu.nl</code>-studenten en coaches, met een speelse <strong>Pixel-Lobby in Hotel-stijl</strong>,
+            minigames, ijsbrekers, open brieven, een fysieke QR-poster en groepsactiviteiten.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem;">
+            <a class="btn btn-primary" href="#hotel">Stap direct de Pixel-Lobby binnen</a>
+            <a class="btn btn-secondary" href="#scrum-proces">Bekijk ons Design- &amp; Scrum-proces</a>
+          </div>
+        </div>
+
+        <!-- Interactief HU-Schoolmail Profiel & Safe-Space Instellingen -->
+        <aside class="card" aria-labelledby="loginCardTitle">
+          <h2 id="loginCardTitle" style="font-size: 1.2rem;">Jouw veilige HU-profiel (Safe Space)</h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">
+            Test hier direct onze registratie-eis: alleen <code>@student.hu.nl</code> (of <code>@hu.nl</code>) werkt, en
+            jij kiest zelf hoeveel je deelt.
+          </p>
+
+          <div class="form-group">
+            <label for="huEmailInput">HU School-e-mailadres (verplicht @student.hu.nl)</label>
+            <input id="huEmailInput" class="form-input" type="email" value="harsha.kanaparthi@student.hu.nl" />
+          </div>
+
+          <div class="form-group">
+            <label for="aliasInput">Roepnaam of schuilnaam (voor anonieme eerste stap)</label>
+            <input id="aliasInput" class="form-input" type="text" value="Harsha" />
+          </div>
+
+          <div class="form-group">
+            <label for="privacySelect">Stap-voor-stap zichtbaarheid (Mutual Consent)</label>
+            <select id="privacySelect" class="form-select">
+              <option value="anoniem">1. Anoniem starten (alleen schuilnaam in Random Chat)</option>
+              <option value="deels" selected>2. Deels zichtbaar (interesses &amp; bio voor bewaarde contacten)</option>
+              <option value="vrienden">3. Volledig profiel &amp; socials delen met geaccepteerde vrienden</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Kies minimaal 3 interesse-tags (voor de Tribe-matcher):</label>
+            <div id="profileTagCloud" class="tag-cloud" role="group" aria-label="Interesse-tags"></div>
+          </div>
+
+          <button id="saveProfileBtn" class="btn btn-primary" type="button" style="width: 100%;">
+            Profiel &amp; HU-verificatie opslaan
+          </button>
+          <div id="profileFeedback" class="status-msg ok" role="status" aria-live="polite" hidden></div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         HET HOTEL: INTERACTIEVE PIXEL-LOBBY (KANTINE) + MINIGAME
+         Centraal hart van TribeLink na onze Sprint 1 Review bijsturing!
+         =================================================================== -->
+    <section id="hotel" class="section section-alt">
+      <div class="container">
+        <span class="eyebrow">Kernfunctie &middot; Het Hotel (Pixel-Lobby)</span>
+        <h2>Loop rond in de virtuele HU-Kantine &amp; speel samen een minigame</h2>
+        <p>
+          Bij onze Sprint 1 Review (15 oktober) kregen wij een gouden tip uit de zaal:
+          <em>"Meer focus op het hotel in plaats van just another website &mdash; alle functies rond het spel bouwen!"</em>
+          Klik hieronder op een tegel of gele stoel om rond te lopen, ga naast een medestudent zitten en start een potje.
+        </p>
+
+        <div class="hotel-layout">
+          <div class="hotel-stage">
+            <div class="hotel-topbar">
+              <strong>Kamer: HU Kantine &middot; Pixel-Lobby</strong>
+              <span class="online-badge">5 aanwezig in lobby</span>
+            </div>
+
+            <!-- 6x5 Interactieve Kantine-vloer opgebouwd vanuit script.js -->
+            <div id="hotelRoomGrid" class="room-grid" aria-label="Interactieve Kantine vloer"></div>
+
+            <div class="hotel-controls">
+              <button class="btn-hotel" type="button" data-avatar-action="zwaai">👋 Zwaai</button>
+              <button class="btn-hotel" type="button" data-avatar-action="dans">🕺 Pixel-dans</button>
+              <label for="gameProposalSelect" style="font-size: 0.8rem; align-self: center;">Spel voorstellen:</label>
+              <select id="gameProposalSelect" class="btn-hotel" aria-label="Kies een spel om voor te stellen">
+                <option value="Boter-Kaas-en-Eieren">Boter-Kaas-en-Eieren</option>
+                <option value="Codenames">Codenames</option>
+                <option value="Mijnenveger Co-op">Mijnenveger Co-op</option>
+                <option value="Skribbl Tekenspel">Skribbl Tekenspel</option>
+              </select>
+              <button id="proposeGameBtn" class="btn-hotel" type="button">Nodig kamer uit</button>
+            </div>
+
+            <div class="hotel-chat-bar">
+              <input
+                id="hotelChatInput"
+                type="text"
+                placeholder="Typ een bericht in de Kantine-lobby..."
+                aria-label="Bericht typen in de Kantine-lobby"
+              />
+              <button id="hotelChatSend" class="btn btn-primary" type="button">Stuur</button>
+            </div>
+
+            <div id="hotelChatFeed" class="chat-feed" aria-live="polite">
+              <p><strong>@nick_vb:</strong> Welkom in het TribeLink Hotel! Klik op een tegel om te lopen.</p>
+              <p><strong>@bart2:</strong> De Ubuntu server hu-s1p3-tribelink draait stabiel, test gerust de chat!</p>
+            </div>
+          </div>
+
+          <!-- Speelbare Lobby-Minigame (met lichte Bot-tegenstander) -->
+          <div class="card">
+            <h3>Lobby-Minigame: Boter-Kaas-en-Eieren</h3>
+            <p style="font-size: 0.87rem;">
+              Uit ons interview met Isabel bleek dat een kort spelletje de makkelijkste manier is om het ijs te breken
+              zonder ongemakkelijke stiltes. Speel hier direct een ronde tegen onze <strong>LobbyBot</strong>!
+            </p>
+            <p id="tttStatus" style="font-weight: 700; font-size: 0.88rem;">
+              Jij speelt met X tegen LobbyBot (O). Klik op een vakje!
+            </p>
+            <div id="tttBoard" class="ttt-board" role="group" aria-label="Speelbord Boter-Kaas-en-Eieren"></div>
+            <button id="tttResetBtn" class="btn btn-secondary" type="button">Nieuw potje starten</button>
+
+            <figure class="evidence-fig" style="margin-top: 1rem;">
+              <img
+                src="assets/tribelink_harsha_qr_poster_en_hotel.jpg"
+                alt="Originele screenshots van onze draaiende TribeLink webapplicatie: links mijn persoonlijke QR-poster Hi I'm Harsha en rechts onze isometrische Hotel Kantine."
+              />
+              <figcaption>
+                <strong>Ons gebouwde React/Laravel product:</strong> Links mijn eigen <em>Meet &amp; Connect</em>
+                QR-poster (<code>@harsha20062</code>) en rechts onze isometrische Hotel-kamer.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         ONTMOETEN HUB: GESPREKS-UI IJSBREKER, OPEN BRIEF & QR-POSTER
+         =================================================================== -->
+    <section id="ontmoeten" class="section">
+      <div class="container">
+        <span class="eyebrow">Laagdrempelig Contact &middot; Online &amp; Fysiek</span>
+        <h2>Drie manieren om contact te leggen zonder sociale drempel</h2>
+        <p>
+          Niet iedereen stapt even makkelijk op een onbekende af. Daarom combineren we drie contactvormen: een
+          gespreksstarter op basis van de <em>"gespreks-ui"</em> uit ons interview met Anne-Wil &amp; Reyna, een
+          asynchrone <strong>Open Brief</strong> als er even niemand live is, en een fysieke <strong>QR-Poster</strong>.
+        </p>
+
+        <div class="three-col-grid">
+          <!-- 1. Gespreks-Ui IJsbreker -->
+          <article class="card">
+            <h3>1. Trek een IJsbreker ("Gespreks-Ui")</h3>
+            <div class="form-group">
+              <label for="onionLayerSelect">Kies gespreksdiepte:</label>
+              <select id="onionLayerSelect" class="form-select">
+                <option value="laag1">Laag 1: Luchtige opwarmer (School &amp; Koffie)</option>
+                <option value="laag2" selected>Laag 2: Gedeelde hobby's &amp; interesses</option>
+                <option value="laag3">Laag 3: Persoonlijke lore &amp; dromen</option>
+              </select>
+            </div>
+
+            <div id="icebreakerCard" class="icebreaker-card" aria-live="polite">
+              <p id="icebreakerText" style="font-weight: 700; margin-bottom: 0;">
+                Welke game, serie of hobby kan jij uren achter elkaar doen zonder de tijd te merken?
+              </p>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 0.45rem;">
+              <button id="drawIcebreakerBtn" class="btn btn-primary" type="button">Trek nieuwe vraag</button>
+              <button id="copyIcebreakerBtn" class="btn btn-secondary" type="button">Kopieer vraag</button>
+            </div>
+            <p id="copyStatus" style="font-size: 0.8rem; color: var(--teal); margin-top: 0.4rem; margin-bottom: 0;"></p>
+          </article>
+
+          <!-- 2. Open Brief (afgerond in Sprint 2!) -->
+          <article class="card">
+            <h3>2. Open Brief aan de Tribe</h3>
+            <p style="font-size: 0.85rem;">
+              Niemand vrij voor Random Chat? Laat een open brief achter zodat een andere student later kan aanhaken.
+            </p>
+            <div class="form-group">
+              <label for="openLetterInput">Schrijf jouw korte oproep of brief:</label>
+              <textarea
+                id="openLetterInput"
+                class="form-textarea"
+                rows="2"
+                placeholder="Bijv. Wie heeft zin om vrijdag samen te lunchen of samen aan Git te werken?"
+              ></textarea>
+            </div>
+            <button id="postLetterBtn" class="btn btn-primary" type="button" style="margin-bottom: 0.8rem;">
+              Brief plaatsen
+            </button>
+            <div id="openLettersList"></div>
+          </article>
+
+          <!-- 3. Persoonlijke QR-Poster (cross-tribe ontmoeten!) -->
+          <article class="card">
+            <h3>3. Jouw Fysieke QR-Poster</h3>
+            <p style="font-size: 0.84rem;">
+              Zoals ik bij onze Sprint 1 Review toelichtte: met een QR-code voeg je iemand uit een andere tribe in één
+              tel toe zonder onhandig usernames over te typen.
+            </p>
+            <div class="form-group">
+              <label for="posterBioInput">Korte zin op jouw poster:</label>
+              <input
+                id="posterBioInput"
+                class="form-input"
+                type="text"
+                value="Let's connect and start a conversation."
+              />
+            </div>
+
+            <div class="poster-preview">
+              <div class="poster-banner">
+                <span style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase;">Meet &amp; Connect</span>
+                <h4 id="posterTitle" style="font-size: 1.3rem; margin: 0.2rem 0;">Hi, I'm Harsha</h4>
+                <div id="posterHandle" style="font-size: 0.82rem; opacity: 0.9;">@harsha20062</div>
+                <p id="posterMsg" style="font-size: 0.83rem; margin: 0.4rem 0 0 0;">
+                  Let's connect and start a conversation.
+                </p>
+              </div>
+              <div class="poster-body">
+                <div style="flex: 1 1 8rem;">
+                  <strong style="font-size: 0.85rem;">SCAN TO CONNECT</strong>
+                  <p style="font-size: 0.78rem; color: #475569; margin: 0.2rem 0 0 0;">
+                    Scan om mijn TribeLink-profiel te openen en een bericht te sturen.
+                  </p>
+                </div>
+                <!-- Ingebedde SVG QR-code zodat hij offline altijd haarscherp rendert -->
+                <div class="qr-box" aria-label="Voorbeeld QR-code naar TribeLink profiel">
+                  <svg viewBox="0 0 100 100" width="100%" height="100%" role="img" aria-label="QR Code">
+                    <rect width="100" height="100" fill="#ffffff" rx="6" />
+                    <path
+                      fill="#0f172a"
+                      d="M10,10 h26 v26 h-26 z M15,15 v16 h16 v-16 z M19,19 h8 v8 h-8 z
+                         M64,10 h26 v26 h-26 z M69,15 v16 h16 v-16 z M73,19 h8 v8 h-8 z
+                         M10,64 h26 v26 h-26 z M15,69 v16 h16 v-16 z M19,73 h8 v8 h-8 z
+                         M42,12 h8 v8 h-8 z M52,20 h8 v14 h-8 z M42,38 h16 v8 h-16 z
+                         M12,44 h18 v8 h-18 z M36,50 h10 v10 h-10 z M52,48 h14 v8 h-14 z
+                         M70,44 h18 v8 h-18 z M44,66 h8 v22 h-8 z M58,62 h14 v10 h-14 z
+                         M76,60 h12 v14 h-12 z M60,78 h28 v10 h-28 z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <button id="printPosterBtn" class="btn btn-secondary" type="button" style="width: 100%; margin-top: 0.65rem;">
+              Print / Bewaar Poster als PDF
+            </button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         MATCHER GRID & HANGOUT DATUMPRIKKER (ONLINE -> OFFLINE VERBINDING)
+         =================================================================== -->
+    <section id="matcher-hangouts" class="section section-alt">
+      <div class="container">
+        <span class="eyebrow">Van Online naar Echte Ontmoeting</span>
+        <h2>Zoek tribe-genoten op interesses &amp; prik samen een datum</h2>
+
+        <div class="two-col-grid">
+          <!-- Rich Bio & Interesse Matcher -->
+          <div class="card">
+            <h3>Tribe-Leden Matcher (Real-time filter)</h3>
+            <div class="two-col-grid" style="gap: 0.6rem;">
+              <div class="form-group" style="margin-bottom: 0;">
+                <label for="memberSearchInput">Zoek op naam, rol of hobby:</label>
+                <input id="memberSearchInput" class="form-input" type="search" placeholder="Bijv. Python, Bowlen, Coach..." />
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label for="memberFilterSelect">Filter op tag:</label>
+                <select id="memberFilterSelect" class="form-select">
+                  <option value="alle">Alle interesses</option>
+                  <option value="Gaming">Gaming</option>
+                  <option value="Python">Python</option>
+                  <option value="React & Web">React &amp; Web</option>
+                  <option value="Bowlen">Bowlen</option>
+                  <option value="Koffie & Thee">Koffie &amp; Thee</option>
+                  <option value="Bordspellen">Bordspellen</option>
+                  <option value="Cybersecurity">Cybersecurity</option>
+                </select>
+              </div>
+            </div>
+            <p id="memberEmptyMsg" class="status-msg err" hidden>
+              Geen tribe-leden gevonden met deze interesse.
+            </p>
+            <div id="memberGrid" class="member-grid"></div>
+          </div>
+
+          <!-- Hangout Prikbord + Datumprikker -->
+          <div class="card">
+            <h3>Offline Hangouts &amp; Datumprikker</h3>
+            <p style="font-size: 0.85rem;">
+              Uit ons interview met Thian en Abdallah bleek dat studenten een simpele brug van online naar echte uitjes
+              (zoals bowlen of koffie) misten. Stem hieronder op een datum of plan zelf een activiteit!
+            </p>
+            <div id="hangoutList"></div>
+
+            <hr style="border: 0; border-top: 1px solid var(--border); margin: 1rem 0;" />
+            <h4>Nieuwe Hangout plaatsen</h4>
+            <div class="two-col-grid" style="gap: 0.55rem;">
+              <div class="form-group">
+                <label for="hoTitle">Titel activiteit *</label>
+                <input id="hoTitle" class="form-input" type="text" placeholder="Bijv. Lasergamen Utrecht" />
+              </div>
+              <div class="form-group">
+                <label for="hoCat">Categorie</label>
+                <select id="hoCat" class="form-select">
+                  <option value="Uitje">Uitje buiten school</option>
+                  <option value="Koffie & Spel">Koffie &amp; Spel op HU</option>
+                  <option value="Samen studeren">Samen studeren</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="hoLoc">Locatie *</label>
+                <input id="hoLoc" class="form-input" type="text" placeholder="Bijv. Padualaan 99 / Centrum" />
+              </div>
+              <div class="form-group">
+                <label for="hoMax">Max. deelnemers *</label>
+                <input id="hoMax" class="form-input" type="number" min="2" max="60" value="12" />
+              </div>
+            </div>
+            <button id="addHangoutBtn" class="btn btn-primary" type="button">Hangout toevoegen</button>
+            <div id="hoError" class="status-msg err" hidden></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         VOLLEDIG ONTWIKKELPROCES: DESIGN SPRINT + 2 BOUWSPRINTS + DEVOPS
+         =================================================================== -->
+    <section id="scrum-proces" class="section">
+      <div class="container">
+        <span class="eyebrow">Bewijsvoering Project 3 &middot; Design Sprint t/m Expo</span>
+        <h2>Hoe wij TribeLink ontwierpen en bouwden in ScrumGPT</h2>
+        <p>
+          Gebruik onderstaande tabbladen (ook met pijltjestoetsen te bedienen) om al onze tussenproducten te bekijken:
+          van onze interviews, persona's en keuzematrix in Week 0 tot Azure DevOps, Git, Ubuntu Server, RetroTool en
+          onze 9 ontvangen Expo post-its op 5 november 2026.
+        </p>
+
+        <div class="tablist" role="tablist" aria-label="Project 3 Fasen en Bewijzen">
+          <button id="ptab-1" class="tab-btn" role="tab" aria-selected="true" aria-controls="ppanel-1" tabindex="0" type="button">
+            1. Design Sprint (Onepager 01–05)
+          </button>
+          <button id="ptab-2" class="tab-btn" role="tab" aria-selected="false" aria-controls="ppanel-2" tabindex="-1" type="button">
+            2. Backlog, Poker &amp; Azure DevOps
+          </button>
+          <button id="ptab-3" class="tab-btn" role="tab" aria-selected="false" aria-controls="ppanel-3" tabindex="-1" type="button">
+            3. Sprint 1 Review (15-10) &amp; Server
+          </button>
+          <button id="ptab-4" class="tab-btn" role="tab" aria-selected="false" aria-controls="ppanel-4" tabindex="-1" type="button">
+            4. Sprint 2, Expo (05-11) &amp; Retro's
+          </button>
+        </div>
+
+        <!-- TAB 1: DESIGN SPRINT -->
+        <div id="ppanel-1" class="tab-panel" role="tabpanel" aria-labelledby="ptab-1">
+          <h3>Week 0 Design Sprint: Interviews, 3 Persona's, Brainwriting, MCA-Matrix &amp; Low-Fi Prototypes</h3>
+          <p>
+            In de eerste week hielden we onze laptops bewust dicht bij het brainstormen en spraken we eerst met zeven
+            betrokkenen (ik interviewde zelf <strong>Isabel</strong>; Bart sprak <strong>Anne-Wil &amp; Reyna</strong>;
+            Marvin sprak <strong>Thian, Abdallah, Kagan &amp; Joshua</strong>). Daaruit leidden wij drie persona's af:
+            de <em>Extraverte Organisator (Nathalie/Milan)</em>, de <em>Introverte Zoeker (Kees/Bram)</em> en de
+            <em>Betrokken Coach/Mentor (Mark/Sander)</em>.
+          </p>
+
+          <h4>Onze ingevulde Multi-Criteria Keuzematrix (Onepager 03 &mdash; schaal 1 t/m 5):</h4>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Criterium (Knock-out voldaan: Digitaal, Interactief, Zelfstandig)</th>
+                  <th>Optie 1: Klassiek Sociaal Platform (Feed &amp; Profiel)</th>
+                  <th>Optie 2: Habbo-stijl Pixel-Lobby Hotel + Minigames</th>
+                  <th>Optie 3 (Gekozen combinatie): TribeLink (Hotel + Stap-voor-stap Profiel &amp; QR-Poster)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>1. Verbinding binnen &amp; tussen tribes</td><td>3 / 5</td><td>4 / 5</td><td><strong>5 / 5</strong> (digitaal ontmoeten + fysieke QR-poster)</td></tr>
+                <tr><td>2. Betekenisvolle interactie</td><td>3 / 5</td><td>5 / 5</td><td><strong>5 / 5</strong> (rondlopen, minigames, ijsbrekers, stemmen)</td></tr>
+                <tr><td>3. Duidelijkheid</td><td>5 / 5</td><td>4 / 5</td><td><strong>4 / 5</strong> (heldere menu-indeling rond de lobby)</td></tr>
+                <tr><td>4. Waarde voor alle 3 persona's</td><td>3 / 5 (mist spel voor introverten)</td><td>4 / 5</td><td><strong>5 / 5</strong> (veilig voor Kees/Bram én actief voor Nathalie/Milan)</td></tr>
+                <tr><td>5. Haalbaarheid in 2 bouwsprints</td><td>5 / 5</td><td>3 / 5 (3D te zwaar, 2D isometrisch wel!)</td><td><strong>4 / 5</strong> (haalbaar met React + Laravel taakverdeling)</td></tr>
+                <tr><td>6. Team-energie &amp; Originaliteit</td><td>2 / 5 ("weer een gewone site")</td><td>5 / 5</td><td><strong>5 / 5</strong> (unieke feel waar het hele team enthousiast van werd)</td></tr>
+                <tr><td>7. Veiligheid &amp; Privacy (HU-mail + consent)</td><td>4 / 5</td><td>3 / 5</td><td><strong>5 / 5</strong> (<code>@student.hu.nl</code> eis + stapsgewijs delen)</td></tr>
+                <tr><td><strong>Totaalscore</strong></td><td><strong>25 / 35</strong></td><td><strong>28 / 35</strong></td><td><strong>33 / 35 (Winnaar!)</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <figure class="evidence-fig" style="max-width: 50rem;">
+            <img
+              src="assets/designsprint_prototypes_en_userflow.jpg"
+              alt="Foto-overzicht van onze papieren low-fidelity schetsen, whiteboard wireframes, gele PC- en mobiele schetsen en onze digitale user flow uit Week 0."
+            />
+            <figcaption>
+              <strong>Bewijs Onepager 04 &amp; 05:</strong> Onze gezamenlijke papieren low-fidelity prototypes (waaronder
+              mijn gedeelde tafelschetsen rechtsboven), Marvins gele/witte schermschetsen en onze volledige User Flow.
+            </figcaption>
+          </figure>
+        </div>
+
+        <!-- TAB 2: BACKLOG, POKER & DEVOPS -->
+        <div id="ppanel-2" class="tab-panel" role="tabpanel" aria-labelledby="ptab-2" hidden>
+          <h3>Product Backlog (DEEP), Planning Poker (Fibonacci) &amp; Azure DevOps + Git</h3>
+          <p>
+            In Onepager 06 schreven we eerst individueel en als groep onze User Stories uit met MoSCoW-prioriteit,
+            acceptatiecriteria én professionele kwaliteitscriteria (zoals WCAG 2.1 AA, AVG dataminimalisatie en NNG
+            reactiesnelheid &lt; 100ms). Tijdens <strong>Planning Poker</strong> namen we een eenvoudige story als
+            referentie van <strong>2 Story Points</strong> en schatten we de backlog in binnen
+            <strong>Azure DevOps (<code>2026-OpenICT-Sept-Project3-ScrumGPT Team</code>)</strong>.
+          </p>
+          <div class="evidence-grid">
+            <figure class="evidence-fig">
+              <img
+                src="assets/devops_product_backlog_storypoints.jpg"
+                alt="Screenshot van onze Azure DevOps Product Backlog met Learning Stories, Enabler Story Server opzetten en Committed User Stories met Story Points 1 t/m 4."
+              />
+              <figcaption>
+                <strong>Azure DevOps Backlog:</strong> Geprioriteerde lijst met zowel Learning Stories als Committed User
+                Stories voorzien van Effort (Story Points uit Planning Poker).
+              </figcaption>
+            </figure>
+            <figure class="evidence-fig">
+              <img
+                src="assets/devops_sprintbord_taken_scrumgpt.jpg"
+                alt="Screenshot van ons Azure DevOps Board met kolommen New, Approved, Committed, Ready en Done."
+              />
+              <figcaption>
+                <strong>Ons Scrum-bord in DevOps:</strong> Zichtbare voortgang van o.a. <em>Bewegen in habbo hotel</em>,
+                <em>Profiel maken</em>, <em>Ontmoeten: Poster</em> en mijn eigen Learning Story in DevOps.
+              </figcaption>
+            </figure>
+            <figure class="evidence-fig">
+              <img
+                src="assets/git_branches_main_dev_frontend_backend.jpg"
+                alt="Screenshot van onze Git-branches: main, dev, frontend, backend en Feature-chat."
+              />
+              <figcaption>
+                <strong>Samenwerken in Git zonder merge-conflicten:</strong> We werkten met gescheiden branches
+                (<code>main</code>, <code>dev</code>, <code>frontend</code>, <code>backend</code>, <code>Feature-chat</code>)
+                en merge-reviews.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- TAB 3: SPRINT 1 REVIEW & UBUNTU SERVER -->
+        <div id="ppanel-3" class="tab-panel" role="tabpanel" aria-labelledby="ptab-3" hidden>
+          <h3>Bouwsprint 1 (Sprint Review 15-10-2026: 10/12 Done) &amp; Live Ubuntu Server</h3>
+          <p>
+            Ons Sprintdoel voor Sprint 1 luidde: <em>"Gebruikers kunnen een eigen profiel aanmaken en contact met elkaar
+            leggen."</em> Aan het einde van Sprint 1 hadden wij <strong>10 van de 12 User Stories op Done</strong>
+            (o.a. HU-mail verificatie, registratie, login, wachtwoord-reset, chat, random chat, lobby en QR-poster).
+            Alleen het koppelen van <em>Open brief</em> en <em>Feed Pagina</em> aan de Laravel-backend schoven door naar
+            Sprint 2. Daarnaast draaide TribeLink op een eigen Open-ICT Linux server (<code>hu-s1p3-tribelink</code>,
+            Ubuntu Server 26.04.1 LTS op IP <code>45.132.41.76</code>).
+          </p>
+          <figure class="evidence-fig" style="max-width: 52rem;">
+            <img
+              src="assets/sprint1_review_slides_15_okt.jpg"
+              alt="Overzicht van onze Sprint Review 1 presentatieslides van 15-10-2026: Productdoel, Sprintdoel Behaald, 10/12 User Stories Done en plan voor komende 2 weken."
+            />
+            <figcaption>
+              <strong>Sprint Review 1 (15-10-2026):</strong> Transparant overzicht van onze 10 afgeronde stories, de 2
+              openstaande backend-koppelingen en onze bijsturing richting het Hotel voor Sprint 2.
+            </figcaption>
+          </figure>
+        </div>
+
+        <!-- TAB 4: SPRINT 2, EXPO & RETRO'S -->
+        <div id="ppanel-4" class="tab-panel" role="tabpanel" aria-labelledby="ptab-4" hidden>
+          <h3>Bouwsprint 2, Expo (05-11-2026), RetroTool &amp; Ontvangen Post-it Feedback</h3>
+          <p>
+            In Sprint 2 werkten wij met vier actieve leden (Nick, Bart, Marvin en ik) de openstaande Laravel-koppelingen
+            af, breidden het Hotel uit met minigames en presenteerden TribeLink op de grote S1-Expo van 5 november 2026.
+          </p>
+          <div class="evidence-grid">
+            <figure class="evidence-fig">
+              <img
+                src="assets/expo_slides_tribelink_05_nov.jpg"
+                alt="Onze Expo-slides van 05-11-2026 met Probleem & Productdoel en Doelgroep & Onze oplossing."
+              />
+              <figcaption>
+                <strong>Expo 05-11-2026:</strong> Heldere koppeling tussen de vier kenmerken van onze doelgroep en onze
+                oplossing in TribeLink.
+              </figcaption>
+            </figure>
+            <figure class="evidence-fig">
+              <img
+                src="assets/retrotool_sprint2_scrumgpt_kaarten.jpg"
+                alt="Screenshot van onze RetroTool-sessie aan het einde van Project 3 Sprint 2 met kolommen Wat ging goed, Wat heb ik geleerd en Wat kan beter."
+              />
+              <figcaption>
+                <strong>Onze Sprint 2 Retrospective in RetroTool:</strong> Mijn paarse kaarten laten precies zien wat ik
+                leerde (Laravel-ervaring, Definition of Done: pas af als front- én backend klaar zijn, reviews sneller oppakken).
+              </figcaption>
+            </figure>
+            <figure class="evidence-fig">
+              <img
+                src="assets/expo_ontvangen_postits_feedback.jpg"
+                alt="Foto van alle 9 geschreven post-its die bezoekers achterlieten bij onze TribeLink Expo-tafel."
+              />
+              <figcaption>
+                <strong>9 Echte Post-its op de Expo:</strong> O.a. <em>"Gave shit, ook erg leuk, duidelijk en interactief
+                gedeeld"</em>, <em>"Veel variatie in dingen om te doen"</em>, én twee eerlijke presentatietips over structuur
+                en gelijke spreektijd.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         WILDCARD USER STORY (IN HET VASTE HU-FORMAT!)
+         =================================================================== -->
+    <section id="wildcard" class="section section-alt">
+      <div class="container">
+        <span class="eyebrow">Eigen Verdieping door Harsha &middot; Vast HU-Format</span>
+        <h2>Wildcard User Story: Stap-voor-Stap Privacy &amp; HU-Domeincheck in Laravel/Web</h2>
+        <div class="card">
+          <p>
+            <strong>NAAM User Story:</strong> Veilige HU-Domeincheck &amp; Gelaagde Profielvrijgave<br /><br />
+            <strong>BESCHRIJVING (vast HU-format):</strong><br />
+            <em>"Als <strong>terughoudende eerstejaars student (zoals persona Kees/Bram)</strong> wil ik <strong>dat alleen
+            geverifieerde <code>@student.hu.nl</code>-accounts toegang krijgen én dat mijn echte contactgegevens pas
+            zichtbaar worden nadat wij allebei een vriendschapsverzoek hebben geaccepteerd (mutual consent)</strong>,
+            zodat <strong>ik veilig en zonder angst voor buitenstaanders of datalekken nieuwe tribe-genoten kan leren
+            kennen in het Hotel en de Random Chat</strong>."</em>
+          </p>
+          <p><strong>PRIORITEIT:</strong> Must Have</p>
+          <h4>ACCEPTATIECRITERIA (wanneer is het af):</h4>
+          <ul>
+            <li>&#9989; Registratie weigert elk e-mailadres dat niet eindigt op <code>@student.hu.nl</code> (of <code>@hu.nl</code> voor coaches) met een duidelijke Nederlandse melding.</li>
+            <li>&#9989; In de Pixel-Lobby en Random Chat ziet een onbekende medestudent alleen jouw gekozen schuilnaam/roepnaam en avatar.</li>
+            <li>&#9989; Pas wanneer beide gebruikers elkaar als vriend accepteren, worden extra profielvelden (zoals volledige bio en Discord/socials) vrijgegeven.</li>
+            <li>&#9989; Wachtwoorden worden in de Laravel-backend gehasht opgeslagen (<code>bcrypt</code>) en nooit in platte tekst bewaard.</li>
+          </ul>
+          <h4>TECHNISCHE LEERUITDAGING &amp; KWALITEITSCRITERIA MET BETROUWBARE BRONNEN:</h4>
+          <ul>
+            <li><strong>Technische leeruitdaging:</strong> Leren hoe je zowel aan de voorkant (JavaScript/React formuliervalidatie) als aan de achterkant (Laravel <code>Request</code>-validatie, database-migraties en gehashte wachtwoorden) toegangsbeveiliging en dataminimalisatie afdwingt.</li>
+            <li><strong>Kwaliteitscriterium 1 (Security &amp; Authenticatie):</strong> Server-side e-mailvalidatie en veilige wachtwoord-hashing conform <em>Laravel 11 Authentication &amp; Validation Documentation</em> (<code>laravel.com/docs/validation</code>) en <em>OWASP Authentication Cheat Sheet</em> (<code>cheatsheetseries.owasp.org</code>).</li>
+            <li><strong>Kwaliteitscriterium 2 (Privacy by Default / AVG):</strong> Standaard staat een nieuw profiel op minimale zichtbaarheid conform <em>Autoriteit Persoonsgegevens &ndash; Privacy by Design &amp; by Default</em> (<code>autoriteitpersoonsgegevens.nl</code>).</li>
+            <li><strong>Kwaliteitscriterium 3 (Toegankelijkheid):</strong> Alle invoervelden en foutmeldingen zijn gekoppeld met zichtbare <code>&lt;label&gt;</code>-elementen en <code>aria-live="polite"</code> conform <em>W3C WCAG 2.1 AA</em> (<code>w3.org/WAI/WCAG21/quickref</code>).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         DE 5 ESSENTIËLE ICT-WAARDEN VAN OPEN-ICT IN TRIBELINK
+         =================================================================== -->
+    <section id="ict-waarden" class="section">
+      <div class="container">
+        <span class="eyebrow">Maatschappelijk Verantwoord Ontwerpen</span>
+        <h2>Hoe de 5 essentiële ICT-waarden zijn verwerkt in TribeLink</h2>
+        <div class="three-col-grid">
+          <article class="card">
+            <h3>1. Privacy (AVG &amp; Safe Space)</h3>
+            <p>
+              Geen verslavend tracking-algoritme (bewust op <em>Won't Have</em> gezet!) en dataminimalisatie: je start
+              met een roepnaam/schuilnaam en geeft via <em>Mutual Consent</em> pas meer vrij zodra jij dat wilt.
+            </p>
+          </article>
+          <article class="card">
+            <h3>2. Security</h3>
+            <p>
+              Registratie is afgeschermd op <code>@student.hu.nl</code> zodat buitenstaanders niet in de tribe-omgeving
+              komen, wachtwoorden zijn versleuteld en onze Ubuntu Server (<code>hu-s1p3-tribelink</code>) draait achter gecontroleerde SSH-toegang.
+            </p>
+          </article>
+          <article class="card">
+            <h3>3. Toegankelijkheid &amp; Inclusie</h3>
+            <p>
+              Ontworpen voor zowel extraverte als introverte studenten (inclusieve persona's), met hoog contrast,
+              toetsenbordbediening, ondersteuning voor <strong>200% browser-zoom</strong> en mobiele duimnavigatie onderaan.
+            </p>
+          </article>
+          <article class="card">
+            <h3>4. Duurzame energie</h3>
+            <p>
+              In plaats van zware 3D-engines of AI-matching kozen wij voor een lichtgewicht 2D isometrische lobby en een
+              compacte 2-core virtuele server (4 GiB RAM), wat het stroomverbruik in zowel browser als datacenter laag houdt.
+            </p>
+          </article>
+          <article class="card">
+            <h3>5. Verantwoorde hardware</h3>
+            <p>
+              TribeLink draait soepel in elke standaard webbrowser op oudere telefoons en bestaande studentenlaptops,
+              zonder zware app-installaties of nieuwe hardware-eisen.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Mobiele onderste navigatiebalk (uit ons interview met Thian!) -->
+  <nav class="mobile-bottom-nav" aria-label="Snelle mobiele navigatie">
+    <a href="#top">Profiel</a>
+    <a href="#hotel">Hotel</a>
+    <a href="#ontmoeten">Ontmoet</a>
+    <a href="#matcher-hangouts">Uitjes</a>
+  </nav>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h3>TribeLink &middot; Squad ScrumGPT</h3>
+        <p>
+          Gebouwd tijdens Project 3 (In verbinding met onze tribes) van HU Open-ICT Semester 1 (oktober &ndash; november
+          2026) door <strong>Nick van Beusichem, Bart Nijbakker, Marvin Akpabot en Harsha Kanaparthi</strong> (met Ekrem in Week 0/Sprint 1).
+        </p>
+      </div>
+      <div class="footer-col">
+        <h3>Gebruikte Kwaliteitsbronnen</h3>
+        <ul style="padding-left: 1.1rem; margin: 0;">
+          <li>Interaction Design Foundation (IxDF, 2025) &ndash; <em>What are Personas? &amp; Low-Fidelity Prototyping</em>.</li>
+          <li>Nielsen Norman Group (NNGroup) &ndash; <em>User Journeys vs. User Flows &amp; Response Time Limits</em>.</li>
+          <li>Agile Scrum Group &ndash; <em>DEEP Product Backlog, Planning Poker, Refinement &amp; Retrospectives</em>.</li>
+          <li>Laravel Documentation &amp; W3C WCAG 2.1 AA Toegankelijkheidsrichtlijnen.</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Studentgegevens</h3>
+        <p>
+          Naam: Harsha Vardhan Kanaparthi<br />
+          HU-mail / Contact: <a href="mailto:harsha.kanaparthi20062@gmail.com">harsha.kanaparthi20062@gmail.com</a><br />
+          Server: <code>hu-s1p3-tribelink</code> (Ubuntu 26.04.1 LTS)
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+@startuml
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName SansSerif
+skinparam componentStyle rectangle
+skinparam PackageBackgroundColor #F8FAFC
+skinparam PackageBorderColor #334155
+skinparam ComponentBackgroundColor #E0F2FE
+skinparam ComponentBorderColor #0284C7
+
+title Systeem- & Samenwerkingsarchitectuur TribeLink (Squad ScrumGPT - Project 3)
+
+actor "Open-ICT Student / Coach\n(@student.hu.nl / @hu.nl)" as User
+
+package "1. Groepsomgeving op HU Linux Server: hu-s1p3-tribelink (Ubuntu 26.04.1 LTS - 45.132.41.76)" {
+  package "Frontend Laag (React + Tailwind CSS)" {
+    [Pixel-Lobby Hotel & Minigames\n(Isometrische Kantine + LobbyBot)] as FE_Hotel
+    [Ontmoeten: Random Chat,\nOpen Brief & QR-Poster UI] as FE_Meet
+    [Feed, Vrienden & Profiel\n(Light / Dark Mode)] as FE_Feed
+  }
+
+  package "Backend Laag (Laravel PHP Framework)" {
+    [Authenticatie & @student.hu.nl Check\n+ Wachtwoord Reset & Bcrypt] as BE_Auth
+    [REST API Controllers\n(Profiel, Posts, Events, Open Brief)] as BE_API
+    [Realtime Chat & Lobby Status\n(Feature-chat branch)] as BE_Chat
+  }
+
+  database "Relationele Database\n(Users, Profiles, Friends,\nPosts, Letters, Events)" as DB
+}
+
+package "2. Standalone Portflow Web-Showcase (Harsha Kanaparthi)" {
+  [index.html + styles.css + script.js\n(Puur HTML5/CSS3/Vanilla JS + LocalStorage,\n320px-1440px & 200% zoom getest)] as Standalone
+}
+
+package "3. Scrum & Versiebeheer (Azure DevOps + Git)" {
+  [Azure DevOps Backlog & Sprintbord\n(DEEP Stories + Planning Poker Effort)] as DevOps
+  [Git Branches: main <- dev <-\nfrontend / backend / Feature-chat] as GitRepo
+}
+
+User --> FE_Hotel : Browser HTTPS
+User --> FE_Meet
+User --> Standalone : Direct te testen in Portflow\nzonder server-afhankelijkheid
+
+FE_Hotel --> BE_Chat : Spel- & kameracties
+FE_Meet --> BE_API : JSON Requests
+FE_Feed --> BE_Auth : Login / Registratie
+BE_Auth --> DB
+BE_API --> DB
+BE_Chat --> DB
+
+GitRepo ..> FE_Hotel : Merge zonder conflicten
+GitRepo ..> BE_API : Code review voor Done
+DevOps ..> GitRepo : Koppeling User Stories\n(bijv. #179358, #179359, #179368)
+@enduml
